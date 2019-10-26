@@ -19,7 +19,9 @@ export class NewTaskComponent implements OnInit {
     color : '',
   };
 
-  pageCase : string = 'new';
+  pageCase : Object = {
+    case : 'new'
+  };
 
   constructor(private fb : FormBuilder , private task : TaskService ,
               private flashMessage : FlashMessagesService , private route : ActivatedRoute) { }
@@ -33,29 +35,31 @@ export class NewTaskComponent implements OnInit {
     this.taskForm.valueChanges.subscribe(_ =>{
       this.getFormError();
     });
-    // if(this.route.snapshot.routeConfig.path === 'updateUserInfo'){
-    //   this.pageCase = 'update';
-    //   this.taskForm.get('password').setValidators([]);
-    //   this.getUserData();
-    // }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if(id){
+        this.pageCase['case'] = 'update';
+        this.pageCase['id'] = id;
+        this.getUserData();
+      }
+    });
   }
 
   getUserData() {
-    // this.user.getUserData().subscribe(
-    //   (res) => {
-    //     if(res['status'] === "done"){
-    //       let data = res['data'];
-    //       this.user.setLocalStorage('userInfo' , JSON.stringify({email : data['email'] , fullName : `${data['firstname']} ${ data['lastname']}` , profile : data['profile']}));
-    //       this.taskForm.patchValue({email : data['email'] , firstname : data['firstname'] , lastname : data['lastname']});
-    //     } else {
-    //       this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
-    //     }
-    //   },
-    //   (err) => {
-    //     console.log({err});
-    //     this.flashMessage.show(err.message, { cssClass: "alert-danger" });
-    //   }
-    // );
+    this.task.getTaskData(this.pageCase['id']).subscribe(
+      (res) => {
+        if(res['status'] === "done"){
+          let data = res['data'];
+          this.taskForm.patchValue({name : data['name'] , description : data['description'] , color : data['color']});
+        } else {
+          this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
+        }
+      },
+      (err) => {
+        console.log({err});
+        this.flashMessage.show(err.message, { cssClass: "alert-danger" });
+      }
+    );
   }
 
   hasError(field){
@@ -67,11 +71,15 @@ export class NewTaskComponent implements OnInit {
   }
 
   onSubmit() : void {
-    this.task.newAndUpdateTask(this.taskForm.value , this.pageCase).subscribe(
+    let data = this.taskForm.value;
+    if(this.pageCase['id']){
+      data['_id'] = this.pageCase['id'];
+    }
+    this.task.newAndUpdateTask(data , this.pageCase['case']).subscribe(
       (res) => {
         if(res['status'] === "done"){
           this.flashMessage.show(`${res['status']} : you can Login now `, { cssClass: "alert-success" });
-          if(this.pageCase === 'update'){
+          if(this.pageCase['case'] === 'update'){
             this.getUserData();
           } else {
             this.taskForm.patchValue({name : '' , description : '' , color : '#000'})

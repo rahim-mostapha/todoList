@@ -29,7 +29,7 @@ router.post('/update' , jwtVerifying.verify ,(req ,res) => {
     };
     if(typeof req.body.color !== 'undefined') taskDate.color = req.body.color ;
     //update task into database
-    Task.findOneAndUpdate({_id : req.body._id , owner : req.auth} , taskDate ,(err , data) => {
+    Task.updateOne({_id : req.body._id , owner : req.auth} , taskDate ,(err , data) => {
         // check the error is exist
         if(err){
             console.log(`token error : ${err}`);
@@ -62,6 +62,19 @@ router.get('/list' , jwtVerifying.verify ,(req ,res) => {
             res.json({status : 'error' , error : "un-expected server error"});
         } 
         // get tasks successfuly
+        else res.json({status : 'done' , data});
+    });
+});
+// get task data
+router.get('/taskData/:_id' , jwtVerifying.verify ,(req ,res) => {
+    //get task data from database
+    Task.findOne({_id : req.params._id ,owner : req.auth} , { owner : 0 } ,(err , data) => {
+        // check the error is exist
+        if(err){
+            console.log(`token error : ${err}`);
+            res.json({status : 'error' , error : "un-expected server error"});
+        } 
+        // get task data successfuly
         else res.json({status : 'done' , data});
     });
 });

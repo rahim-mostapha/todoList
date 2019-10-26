@@ -1,6 +1,6 @@
 <div class="formStyle">
         <div class="head">
-            <h2> {{pageCase | titlecase}} <span class="glyphicon glyphicon-list-alt"></span></h2>
+            <h2> {{pageCase.case | titlecase}} <span class="glyphicon glyphicon-list-alt"></span></h2>
         </div>
         <div class="body">
             <form [formGroup]="taskForm" class="form-horizontal" (ngSubmit)="onSubmit()">
