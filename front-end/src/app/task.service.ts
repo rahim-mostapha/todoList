@@ -30,6 +30,16 @@ export class TaskService {
       })
     }).pipe(catchError(this.responsError));
   }
+  
+  deleteTask( _id : string ) : Observable<Object>{
+    let token = localStorage.getItem('token');
+    return this.http.delete<Object>(`http://localhost:3000/task/delete/${_id}` , {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.responsError));
+  }
 
   responsError(error : HttpErrorResponse) {
     if(error instanceof ErrorEvent) {

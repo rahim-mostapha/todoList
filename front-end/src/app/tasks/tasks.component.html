@@ -1,1 +1,16 @@
-<p>tasks works!</p>
+<br><br>
+<p class="alert alert-danger" *ngIf="!tasks"> You have no tasks </p>
+<div class="col-md-4 col-sm-6 col-xs-12 task-content" *ngFor="let task of tasks">
+    <div class="task" [style.background-color]="task.color">
+        <div class="name-oprations">
+            {{task.name}}
+            <span class="pull-right">
+                <a [routerLink]="'/home/updateTask/'+task._id"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a>
+                <span (click)="removeTask(task._id)" class="glyphicon glyphicon-trash" title="Delete"></span>
+            </span>
+            </div>
+        <div class="description">
+            {{task.description}}
+        </div>
+    </div>
+</div>

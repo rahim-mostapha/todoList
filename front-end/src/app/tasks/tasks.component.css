@@ -1,0 +1,39 @@
+.task-content{
+    margin-bottom: 15px;
+}
+.task{
+    border-radius: 6px;
+    text-align: center;
+    min-height: 100px;
+    font-family: monospace, 'Courier New', Courier;
+    overflow: hidden;
+}
+.task .name-oprations{
+    font-weight: bold;
+    background-color: #0000007a;
+    padding: 6px;
+    letter-spacing: 1px;
+}
+.task .name-oprations span.glyphicon{
+    border-radius: 50%;
+    margin-right: 6px;
+    cursor: pointer;
+    padding: 6px;
+    margin-top: -7px;
+    font-size: 9px;
+    color: #fff;
+    text-decoration: none;
+}
+.task .name-oprations span.glyphicon-pencil{
+    background-color: #00000061;
+}
+.task .name-oprations span.glyphicon-trash{
+    background-color: #fd0a0a61;
+}
+.task .description{
+    padding: 6px;
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
