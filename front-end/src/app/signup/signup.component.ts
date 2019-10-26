@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyValidation } from '../my-validation';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   pageCase : String = 'signup';
 
-  constructor(private fb : FormBuilder , private router : Router ,
+  constructor(private fb : FormBuilder , private router : Router , private user : UserService,
               private flashMessage : FlashMessagesService , private route : ActivatedRoute) { }
 
   ngOnInit() {
@@ -66,21 +67,21 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() : void {
-    // this.user.loginOrSignupOrupdate(this.signupForm.value , this.pageCase).subscribe(
-    //   (res) => {
-    //     if(res['status'] === "done"){
-    //       this.flashMessage.show(`${res['status']} : you can Login now `, { cssClass: "alert-success" });
-    //       if(this.pageCase === 'update'){
-    //         this.getUserData();
-    //       } else this.router.navigate(['/login']);
-    //     } else {
-    //       this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
-    //     }
-    //   },
-    //   (err) => {
-    //     this.flashMessage.show(err.message, { cssClass: "alert-danger" });
-    //   }
-    // );
+    this.user.loginOrSignupOrUpdateUser(this.signupForm.value , this.pageCase).subscribe(
+      (res) => {
+        if(res['status'] === "done"){
+          this.flashMessage.show(`${res['status']} : you can Login now `, { cssClass: "alert-success" });
+          if(this.pageCase === 'update'){
+            this.getUserData();
+          } else this.router.navigate(['/login']);
+        } else {
+          this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
+        }
+      },
+      (err) => {
+        this.flashMessage.show(err.message, { cssClass: "alert-danger" });
+      }
+    );
   }
 
 }

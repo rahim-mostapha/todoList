@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { NewTaskComponent } from './new-task/new-task.component';
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

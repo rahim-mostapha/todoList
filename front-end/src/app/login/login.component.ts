@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Router , ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyValidation } from '../my-validation';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private fb : FormBuilder , private flashMessage : FlashMessagesService , private router : Router , 
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute , private user : UserService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,7 +38,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-
+    this.user.loginOrSignupOrUpdateUser(this.loginForm.value , 'login').subscribe(
+      res => {
+        if(res['status'] === 'done'){
+          this.flashMessage.show(`${res['status']} : Welcome `, { cssClass: "alert-success" })
+          localStorage.setItem('token' , res['token']);
+          localStorage.setItem('userInfo' , JSON.stringify(res['data']));
+          this.router.navigate(['/home']);
+        } else {
+          this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" })
+        }
+      } ,
+      err => {
+        this.flashMessage.show(err.message , {cssClass : 'alert-danger'})
+      }
+    )
   }
 
 }
