@@ -13,6 +13,8 @@ const DB = mongoose.connection;
 
 // set public as static file
 app.use(express.static(path.join(__dirname , 'public')));
+//set cors for outside access
+app.use(cors());
 
 // set middelWares
 app.use(bodyParser.json({limit : '50mb' }));
