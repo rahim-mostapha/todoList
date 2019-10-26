@@ -1,0 +1,29 @@
+.formStyle{
+    background-color: #0c0c0c;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.formStyle .head{
+    padding: 10px;
+    text-align: center;
+}
+.formStyle .body{
+    padding: 27px;
+    background-color: #040404;
+}
+.formStyle .body .form-control{
+    background-color: transparent;
+    padding: 22px 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-family: monospace;
+}
+.formStyle .body .btn{
+    background-color: #ffffff36;
+    padding: 9px;
+    color: #fff;
+}
+.formStyle .body .btn:hover{
+    background-color: #2323236e;
+}

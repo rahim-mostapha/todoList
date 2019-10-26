@@ -8,28 +8,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { RedirectComponent } from './update-user-info/redirect.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { UrlComponent } from './url/url.component';
-import { ListUrlsComponent } from './list-urls/list-urls.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { UserService } from './user.service';
-import { UrlService } from './url.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    RedirectComponent,
     UserInfoComponent,
-    UrlComponent,
-    ListUrlsComponent,
     HomeComponent,
     NavbarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TasksComponent,
+    NewTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -38,10 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [
-    UserService,
-    UrlService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

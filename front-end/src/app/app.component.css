@@ -1,0 +1,7 @@
+.main-content{
+    background-color: #00000040;
+    margin-top: -20px;
+    padding-top: 20px;
+    border-radius: 0 0 10px 10px;
+    min-height: 540px;
+}
