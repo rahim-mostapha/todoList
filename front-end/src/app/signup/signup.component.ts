@@ -33,29 +33,29 @@ export class SignupComponent implements OnInit {
     this.signupForm.valueChanges.subscribe(_ =>{
       this.getFormError();
     });
-    // if(this.route.snapshot.routeConfig.path === 'updateUserInfo'){
-    //   this.pageCase = 'update';
-    //   this.signupForm.get('password').setValidators([]);
-    //   this.getUserData();
-    // }
+    if(this.route.snapshot.routeConfig.path === 'updateUserInfo'){
+      this.pageCase = 'update';
+      this.signupForm.get('password').setValidators([]);
+      this.getUserData();
+    }
   }
 
   getUserData() {
-    // this.user.getUserData().subscribe(
-    //   (res) => {
-    //     if(res['status'] === "done"){
-    //       let data = res['data'];
-    //       this.user.setLocalStorage('userInfo' , JSON.stringify({email : data['email'] , fullName : `${data['firstname']} ${ data['lastname']}` , profile : data['profile']}));
-    //       this.signupForm.patchValue({email : data['email'] , firstname : data['firstname'] , lastname : data['lastname']});
-    //     } else {
-    //       this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
-    //     }
-    //   },
-    //   (err) => {
-    //     console.log({err});
-    //     this.flashMessage.show(err.message, { cssClass: "alert-danger" });
-    //   }
-    // );
+    this.user.getUserData().subscribe(
+      (res) => {
+        if(res['status'] === "done"){
+          let data = res['data'];
+          localStorage.setItem('userInfo' , JSON.stringify({email : data['email'] , fullName : data['fullName'] , date : data['date']}));
+          this.signupForm.patchValue({email : data['email'] , fullname : data['fullname']});
+        } else {
+          this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
+        }
+      },
+      (err) => {
+        console.log({err});
+        this.flashMessage.show(err.message, { cssClass: "alert-danger" });
+      }
+    );
   }
 
   hasError(field){

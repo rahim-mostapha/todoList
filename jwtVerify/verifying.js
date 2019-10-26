@@ -25,6 +25,7 @@ function verifyAndGetData(req , res , next){
 }
 function verify(req , res , next){
     let auth = req.headers['authorization'];
+    console.log(auth);
     if(auth){
         auth = auth.split(" ");
         if(auth[0] ==='Bearer' && auth[1]){

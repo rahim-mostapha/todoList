@@ -14,9 +14,20 @@ export class UserService {
   constructor(private http : HttpClient , private jwt : JwtService) { }
 
   loginOrSignupOrUpdateUser(data : Object, path : string) : Observable<Object>{
+    let token = this.jwt.getToken();
     return this.http.post<Object>(`http://localhost:3000/user/${path}` , data , {
       headers : new HttpHeaders({
-        'Content-Type' : 'application/json'
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.responsError));
+  }
+  getUserData() : Observable<Object>{
+    let token = this.jwt.getToken();
+    return this.http.get<Object>(`http://localhost:3000/user/verifyAndGetData`, {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
       })
     }).pipe(catchError(this.responsError));
   }
