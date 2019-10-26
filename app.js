@@ -29,7 +29,7 @@ DB.once('open' , () => {
     // set user controller 
     app.use('/user' , require('./user/controller'));
     
-    // set user controller 
+    // set task controller 
     app.use('/task' , require('./task/controller'));
 
     app.listen(process.env.PORT , (err) =>{

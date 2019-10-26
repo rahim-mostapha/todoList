@@ -16,6 +16,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { UserService } from './user.service';
 import { JwtService } from './jwt.service';
+import { TaskService } from './task.service';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { JwtService } from './jwt.service';
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    UserService,
-    JwtService
+    UserService ,
+    JwtService ,
+    TaskService
   ],
   bootstrap: [AppComponent]
 })
