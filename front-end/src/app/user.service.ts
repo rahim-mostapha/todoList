@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient , HttpErrorResponse , HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import * as jwt_decode from 'jwt-decode';
+import { JwtService } from './jwt.service';
+
 // import * as jwt from 'jsonwebtoken';
 
 @Injectable({
@@ -10,9 +11,9 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class UserService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient , private jwt : JwtService) { }
 
-  loginOrSignupOrUpdateUser(data , path) : Observable<Object>{
+  loginOrSignupOrUpdateUser(data : Object, path : string) : Observable<Object>{
     return this.http.post<Object>(`http://localhost:3000/user/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json'
@@ -33,15 +34,7 @@ export class UserService {
   }
 
   isLoggedin() {
-    let token = localStorage.getItem('token');
-    if(token){
-      let decoded = jwt_decode(token);
-      const date = new Date(0); 
-      date.setUTCSeconds(decoded.exp);
-      return (date.valueOf() > new Date().valueOf());
-    } else {
-      return false;
-    }
+    return !this.jwt.isTokenExpire();
   }
 
 }

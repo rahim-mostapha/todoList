@@ -21,6 +21,7 @@ const routes: Routes = [
           { path : '' , component : TasksComponent } ,
           { path : 'tasks' , component : TasksComponent } ,
           { path : 'new' , component : NewTaskComponent } ,
+          { path : 'updateTask/:id' , component : NewTaskComponent } ,
           { path : 'updateUserInfo' , component : SignupComponent } ,
         ]
       } ,

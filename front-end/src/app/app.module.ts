@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { UserService } from './user.service';
+import { JwtService } from './jwt.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserService } from './user.service';
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    UserService
+    UserService,
+    JwtService
   ],
   bootstrap: [AppComponent]
 })

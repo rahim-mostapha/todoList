@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
     password : '',
   };
 
-  pageCase : String = 'signup';
+  pageCase : string = 'signup';
 
   constructor(private fb : FormBuilder , private router : Router , private user : UserService,
               private flashMessage : FlashMessagesService , private route : ActivatedRoute) { }

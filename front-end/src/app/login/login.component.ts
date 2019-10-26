@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.flashMessage.show(`${res['status']} : Welcome `, { cssClass: "alert-success" })
           localStorage.setItem('token' , res['token']);
           localStorage.setItem('userInfo' , JSON.stringify(res['data']));
-          this.router.navigate(['/home']);
+          location.href = '/home';
         } else {
           this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" })
         }
