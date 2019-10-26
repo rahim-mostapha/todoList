@@ -23,7 +23,7 @@ export class MyValidation {
           signupFormErrors[controll] = '';
           if(form.get(controll).invalid){
             Object.keys(form.get(controll).errors).forEach(error => {
-              signupFormErrors[controll] += this.errorMessage(error , controll);
+              signupFormErrors[controll] += this.errorMessage(error , controll) + ' ';
             });
           }
         });

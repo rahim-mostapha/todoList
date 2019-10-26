@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyValidation } from '../my-validation';
@@ -25,14 +25,14 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      fullname : ['' , [Validators.required , Validators.maxLength(50) , Validators.minLength(5)]],
+      fullname : ['' , [Validators.required , Validators.maxLength(20) , Validators.minLength(5)]],
       email : ['' , [Validators.required , Validators.pattern(/[a-zA-z0-9_\-\.]+\@[a-zA-z0-9_\-]{3,6}\.[a-zA-z]{3,5}/)]],
       password : ['' , [Validators.required , Validators.maxLength(25) , Validators.minLength(6)]],
     });
     this.signupForm.valueChanges.subscribe(_ =>{
       this.getFormError();
     });
-    // if(this.route.snapshot.routeConfig.path === 'updateUser'){
+    // if(this.route.snapshot.routeConfig.path === 'updateUserInfo'){
     //   this.pageCase = 'update';
     //   this.signupForm.get('password').setValidators([]);
     //   this.getUserData();
