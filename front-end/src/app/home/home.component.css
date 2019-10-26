@@ -1,0 +1,16 @@
+.home-content a{
+    display: inline-block;
+    width: 33.333%;
+    text-align: center;
+    padding: 20px;
+    background-color: #2131ab1a;
+    color: #fff;
+    text-decoration: none;
+    transition: ease-in-out .4s;
+}
+.home-content a.active{
+    background-color: #2131ab47
+}
+.home-content a:hover{
+    background-color: #2131abb0
+}

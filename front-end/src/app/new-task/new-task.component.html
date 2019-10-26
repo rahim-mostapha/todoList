@@ -1,1 +1,42 @@
-<p>new-tasl works!</p>
+<div class="formStyle">
+        <div class="head">
+            <h2> {{pageCase | titlecase}} <span class="glyphicon glyphicon-list-alt"></span></h2>
+        </div>
+        <div class="body">
+            <form [formGroup]="signupForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+                <div class="form-group" [ngClass]="{'has-error' : hasError('name')}">
+                    <label for="name" class="col-sm-3 control-label">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" (blur)="getFormError()" class="form-control" id="name" formControlName="name" placeholder="Name">
+                        <span class="help-block" *ngIf="hasError('name')">
+                            {{ signupFormErrors.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error' : hasError('description')}">
+                    <label for="description" class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                        <textarea (blur)="getFormError()" class="form-control" id="description" formControlName="description" placeholder="Description"></textarea>
+                        <span class="help-block" *ngIf="hasError('description')">
+                            {{ signupFormErrors.description }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error' : hasError('color')}">
+                    <label for="color" class="col-sm-3 control-label">Color</label>
+                    <div class="col-sm-9">
+                        <input type="color" (blur)="getFormError()" id="color" formControlName="color" placeholder="Color">
+                        <span class="help-block" *ngIf="hasError('color')">
+                            {{ signupFormErrors.color }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" [disabled]="signupForm.invalid" class="btn col-sm-12">Save</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+        
