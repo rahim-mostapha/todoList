@@ -6,17 +6,21 @@ import { TasksComponent } from './tasks/tasks.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   { path : 'login' , component : LoginComponent } ,
   { path : 'signup' , component : SignupComponent } ,
+  { path : '' , redirectTo : '/home' , pathMatch : 'full' } ,
   { 
     path : 'home' ,
     component : HomeComponent,
+    canActivate : [AuthGuard] ,
     children : [
       { 
         path : '' ,
+        canActivateChild : [AuthGuard],
         children : [
           { path : '' , component : TasksComponent } ,
           { path : 'tasks' , component : TasksComponent } ,
