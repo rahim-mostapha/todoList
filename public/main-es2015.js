@@ -970,7 +970,7 @@ let NewTaskComponent = class NewTaskComponent {
         this.taskForm = this.fb.group({
             name: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(20), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(5)]],
             description: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(500), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10)]],
-            color: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            color: ['#3c3c84'],
         });
         this.taskForm.valueChanges.subscribe(_ => {
             this.getFormError();
