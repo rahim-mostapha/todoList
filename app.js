@@ -31,6 +31,11 @@ DB.once('open' , () => {
     
     // set task controller 
     app.use('/task' , require('./task/controller'));
+    
+    // view all
+    app.get('*' , (req , res) => {
+        res.sendFile(path.join(__dirname , 'public/index.html'));
+    });
 
     app.listen(process.env.PORT , (err) =>{
         if(err) console.error(`listen error ${err} `);
