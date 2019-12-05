@@ -13,7 +13,7 @@ export class TaskService {
 
   newAndUpdateTask(data : Object , path : string) : Observable<Object>{
     let token = localStorage.getItem('token');
-    return this.http.post<Object>(`http://localhost:3000/task/${path}` , data , {
+    return this.http.post<Object>(`task/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -23,7 +23,7 @@ export class TaskService {
 
   listAllTasks() : Observable<Object>{
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/task/list` , {
+    return this.http.get<Object>(`task/list` , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -33,7 +33,7 @@ export class TaskService {
 
   getTaskData( _id : string ) : Observable<Object>{
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/task/taskData/${_id}` , {
+    return this.http.get<Object>(`task/taskData/${_id}` , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -43,7 +43,7 @@ export class TaskService {
   
   deleteTask( _id : string ) : Observable<Object>{
     let token = localStorage.getItem('token');
-    return this.http.delete<Object>(`http://localhost:3000/task/delete/${_id}` , {
+    return this.http.delete<Object>(`task/delete/${_id}` , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
