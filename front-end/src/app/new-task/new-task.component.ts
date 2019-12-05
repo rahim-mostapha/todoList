@@ -30,7 +30,7 @@ export class NewTaskComponent implements OnInit {
     this.taskForm = this.fb.group({
       name : ['' , [Validators.required , Validators.maxLength(20) , Validators.minLength(5)]],
       description : ['' , [Validators.required , Validators.maxLength(500) , Validators.minLength(10)]],
-      color : ['' , [Validators.required]],
+      color : ['#3c3c84'],
     });
     this.taskForm.valueChanges.subscribe(_ =>{
       this.getFormError();
