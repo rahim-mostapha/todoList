@@ -6,8 +6,9 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-
+console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL , {useNewUrlParser : true , useUnifiedTopology : true} , (error)=>{
+    console.log('error' , error);
     if(!error){
         const DB = mongoose.connection;
         
@@ -39,7 +40,7 @@ mongoose.connect(process.env.DATABASE_URL , {useNewUrlParser : true , useUnified
             
             // view all
             app.get('*' , (req , res) => {
-                res.sendFile(path.join(__dirname , 'public/index.html'));
+                res.send("web view is disabled now");//.sendFile(path.join(__dirname , 'public/index.html'));
             });
         
             app.listen(process.env.PORT , (err) =>{
