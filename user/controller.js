@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 
 const jwtverifying = require('../jwtVerify/verifying');
 const User = require('./modle/user');
+router.get('/' , jwtverifying.verifyAndGetData , (req , res) => {
+    res.json({status : 'done' , data : req.auth});
+});
 
 router.post('/signup' , (req , res) => {
     // initilaze user object with user data
@@ -79,8 +82,6 @@ router.get('/verify' , jwtverifying.verify , (req , res) => {
     res.json({status : 'done'});
 });
 // check if token verifyed or not and return the user data if it verifyed
-router.get('/verifyAndGetData' , jwtverifying.verifyAndGetData , (req , res) => {
-    res.json({status : 'done' , data : req.auth});
-});
+
 
 module.exports = router;

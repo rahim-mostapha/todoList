@@ -66,7 +66,7 @@ router.get('/list' , jwtVerifying.verify ,(req ,res) => {
     });
 });
 // get task data
-router.get('/taskData/:_id' , jwtVerifying.verify ,(req ,res) => {
+router.get('/:_id' , jwtVerifying.verify ,(req ,res) => {
     //get task data from database
     Task.findOne({_id : req.params._id ,owner : req.auth} , { owner : 0 } ,(err , data) => {
         // check the error is exist
