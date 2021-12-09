@@ -11,7 +11,7 @@ mongoose.connect(process.env.DATABASE_URL , {useNewUrlParser : true , useUnified
     if(!error){
         const DB = mongoose.connection;
         
-        // set public as static file
+        // set public as static file dssa
         app.use(express.static(path.join(__dirname , 'public')));
         //set cors for outside access
         app.use(cors());
