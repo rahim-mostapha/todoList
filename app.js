@@ -37,10 +37,9 @@ mongoose.connect(process.env.DATABASE_URL , {useNewUrlParser : true , useUnified
             // set task controller 
             app.use('/api/task' , require('./task/controller'));
             
-            // view all
-            // app.get('*' , (req , res) => {
-            //     res.sendFile(path.join(__dirname , 'public/index.html'));
-            // });
+            app.get('*' , (req , res) => {
+                res.send('web view id disabled now');
+            });
         
             app.listen(process.env.PORT , (err) =>{
                 if(err) console.error(`listen error ${err} `);
