@@ -19,6 +19,10 @@ mongoose.connect(process.env.DATABASE_URL , {useNewUrlParser : true , useUnified
         // set middelWares
         app.use(bodyParser.json({limit : '50mb' }));
         app.use(bodyParser.urlencoded({limit : '50mb' , extended : true}));
+        app.use(function (err, req, res, next) {
+            console.error(err.stack)
+            res.status(500).json({err});
+          })
         console.log('connect');
         
         DB.on('error' , (error) => {
